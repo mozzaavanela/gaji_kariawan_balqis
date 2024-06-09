@@ -50,10 +50,11 @@ class KaryawanController extends Controller
         $karyawan->save();
         return redirect()->route('karyawan.index');
     }
+
     public function destroy($id)
     {
         $karyawan = Karyawan::find($id);
         $karyawan->delete();
         return redirect()->route('karyawan.index');
-    }
+    }
 }

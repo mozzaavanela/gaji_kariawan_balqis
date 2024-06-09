@@ -66,5 +66,5 @@ class GajiController extends Controller
         $gaji = Gaji::find($id);
         $gaji->delete();
         return redirect()->route('gaji.index');
-    }
+    }
 }
