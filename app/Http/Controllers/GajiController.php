@@ -24,6 +24,7 @@ class GajiController extends Controller
     public function store(Request $request)
 {
     $request->validate([
+        
         'karyawan_id' => 'required|exists:karyawans,id',
         'bulan' => 'required|string|max:7',
         'jumlah' => 'required|numeric',

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\GajiController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,10 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('karyawan', KaryawanController::class);
-Route::resource('gaji', GajiController::class);
-Route::resource('pengguna', UserController::class);
+Route::resource('karyawan', KaryawanController::class)->middleware('auth');
+Route::resource('gaji', GajiController::class)->middleware('auth');
+Route::resource('pengguna', UserController::class)->middleware('auth');
+
+Route::get('login',[LoginController::class,'loginView'])->name('login');
+Route::post('login',[LoginController::class,'authenticate']);
+Route::post('logout',[LoginController::class,'logout'])->middleware('auth');

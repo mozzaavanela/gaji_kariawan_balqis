@@ -23,19 +23,37 @@
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background-color: rgb(39, 243, 216)">
             <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-            </ul>
-            <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-user mr-2"></i>{{ Auth::user()->name }}
+                        <span class="badge badge-warning navbar-badge"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-item dropdown-header">User Menu</span>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-user mr-2"></i> {{ Auth::user()->name }}
+                            <span class="float-right text-muted text-sm"></span>
+                        </a>
+    
+                        <div class="dropdown-divider"></div>
+                        <form action="logout" method="POST">
+                            @csrf
+                                <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt mr-2"></i>Logout</button>
+                        </form>
+                    </div>
+                </li>
+    
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li>
+    
             </ul>
+            <!-- Right navbar links -->
+            
         </nav>
         <!-- /.navbar -->
 
@@ -55,7 +73,7 @@
                         <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Username</a>
+                        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
                     </div>
                 </div>
 
@@ -84,8 +102,8 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('pengguna.index') }}" class="nav-link {{ ($title ?? '') === 'User' ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-dollar-sign"></i>
-                                <p>Gaji</p>
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>admin</p>
                             </a>
                         </li>
 
